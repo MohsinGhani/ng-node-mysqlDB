@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule, routingComponents } from './app.routers';
 
 import { AppComponent } from './app.component';
 import { GeneralNavComponent } from './general-nav/general-nav.component';
@@ -27,13 +28,14 @@ import { HomeComponent } from './home/home.component';
     DoctorDashboardComponent,
     AdminDashboardComponent,
     AdminLoginComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
