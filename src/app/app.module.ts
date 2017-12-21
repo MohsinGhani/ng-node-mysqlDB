@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app.routers';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { GeneralNavComponent } from './general-nav/general-nav.component';
@@ -15,6 +16,7 @@ import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.co
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { HomeComponent } from './home/home.component';
+import { HttpService } from './services/http'
 
 
 @NgModule({
@@ -35,9 +37,10 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

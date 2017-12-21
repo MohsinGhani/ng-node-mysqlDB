@@ -36,9 +36,9 @@ class App {
         // placeholder route handler
         router.get('/getAllReports', Functions.getAllReports);
         router.get('/getReport/:id', Functions.getReport);
-        router.get('/add', Functions.post);
-        router.get('/delete/:id', Functions.delete);
-        router.get('/add/:id', Functions.put);
+        router.post('/add/', Functions.post);
+        router.delete('/delete/:id', Functions.delete);
+        router.put('/add/:id', Functions.put);
 
         this.express.use('/api/', router);
     }
