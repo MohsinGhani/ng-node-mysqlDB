@@ -17,6 +17,12 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpService } from './services/http'
+import { AdminService } from './services/admin.service';
+import { AdminNavComponent } from './admin-nav/admin-nav.component';
+import { AddDoctorComponent } from './add-doctor/add-doctor.component';
+import { AddCollectorComponent } from './add-collector/add-collector.component';
+import { DoctorListComponent } from './doctor-list/doctor-list.component';
+import { CollectorListComponent } from './collector-list/collector-list.component'
 
 
 @NgModule({
@@ -31,6 +37,11 @@ import { HttpService } from './services/http'
     AdminDashboardComponent,
     AdminLoginComponent,
     HomeComponent,
+    AdminNavComponent,
+    AddDoctorComponent,
+    AddCollectorComponent,
+    DoctorListComponent,
+    CollectorListComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +51,7 @@ import { HttpService } from './services/http'
     AppRoutingModule,
     HttpModule,
   ],
-  providers: [HttpService],
+  providers: [HttpService,AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './../services/http'
-import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 interface Admin{
   email:String,
@@ -17,19 +17,26 @@ export class AdminLoginComponent implements OnInit {
     email:"",
     password: ""
   };
-  constructor(public http: HttpService) { }
+  constructor(public http: HttpService,private _route: Router) { }
 
   ngOnInit() {
   }
 
   login(){
+    let adminId:any = this.user.email;
+    let adminPass:any = this.user.password;
+    let key = btoa(btoa(adminId) + '??' + btoa(adminPass));
+    console.log(key);
+    document.cookie = "sessionID="+key+';';
+    if(adminId == "admin@gmail.com" && adminPass == "admin")
+    {
+      this._route.navigate(['/admin-dashboard']);
+    }
     // let aa = {name: "Newww", dob: "21-01-2017", age: "20", gender: "Male"}
     // this.http.post(aa).subscribe()
-
-    this.http.getReport(1).subscribe((rr)=>{
-      console.log(rr)
-    })
-    // console.log(this.user)
+    // this.http.getReport(1).subscribe((rr)=>{
+    //   console.log(rr)
+    // })
   }
 
 }

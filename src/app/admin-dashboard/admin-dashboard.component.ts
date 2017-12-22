@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminService } from './../services/admin.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _route: Router, private service: AdminService) {
+    if (!this.service.adminAuthentication()) {
+      this._route.navigate(['home']);
+}
+  }
 
   ngOnInit() {
   }
