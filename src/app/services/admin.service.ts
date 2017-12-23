@@ -9,7 +9,7 @@ export class AdminService {
     let i = 0;
     let cookeiValue;
     for ( ; x.length ; i++) {
-      if (x[i].split('=')[0].trim() === 'sessionID'){
+      if (x[i].split('=')[0].trim() === 'adminSession'){
         cookeiValue = x[i].split('=')[1];
         break;
       }
@@ -27,7 +27,7 @@ export class AdminService {
   }
 
   logout() {
-    document.cookie = 'sessionID=' + '' + ';';
+    document.cookie = 'adminSession=' + '' + ';';
   }
 
 }

@@ -27,7 +27,7 @@ export class AdminLoginComponent implements OnInit {
     let adminPass:any = this.user.password;
     let key = btoa(btoa(adminId) + '??' + btoa(adminPass));
     console.log(key);
-    document.cookie = "sessionID="+key+';';
+    document.cookie = "adminSession="+key+';';
     if(adminId == "admin@gmail.com" && adminPass == "admin")
     {
       this._route.navigate(['/admin-dashboard']);
