@@ -1,3 +1,44 @@
-<p>
-  add-doctor works!
-</p>
+<app-admin-nav></app-admin-nav>
+
+<div class="container">
+  <mat-card>
+    <mat-card-title>Add Doctor</mat-card-title>
+    <mat-card-content>
+
+      <form (ngSubmit)="addDoctor()" #loginForm="ngForm" novalidate>
+
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Write Your Name" [(ngModel)]="collector.name" #name="ngModel" id="name" name="name" required>
+        </mat-form-field>
+        <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+          <div [hidden]="!name.errors.required">Name is Required!</div>
+        </div>
+        <br>
+
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Email your Email" [(ngModel)]="collector.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            #email="ngModel" id="email" name="email" required>
+        </mat-form-field>
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+          <div [hidden]="!email.errors.required">Email Address is Required!</div>
+          <div [hidden]="!email.errors.pattern">Email is required and format should be mohsin@gmail.com</div>
+        </div>
+        <br>
+
+        <mat-form-field class="input-width">
+          <mat-select placeholder="Select Gender" [(ngModel)]="collector.gender" name="gender" #gender="ngModel" id="gender" required>
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div *ngIf="gender.errors && (gender.dirty || gender.touched)" class="alert alert-danger">
+          <div [hidden]="!gender.errors.required">Gender is Required!</div>
+        </div>
+
+        <br>
+        <br>
+        <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
