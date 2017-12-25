@@ -19,8 +19,27 @@ connection.connect(function (err) {
 });
 class Functions {
     constructor() { }
-    static getAllReports(req, res) {
-        connection.query(`SELECT * FROM Reports`, function (error, results, fields) {
+    static login(req, res) {
+        let user = req.body;
+        connection.query(`SELECT * FROM Employees WHERE email = '${user.email}' AND password = '${user.password}' AND post = '${user.post}';`, function (error, results, fields) {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                });
+            }
+            else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
+    }
+    static getDoctors(req, res) {
+        connection.query(`SELECT * FROM Employees WHERE post = 'doctor'`, function (error, results, fields) {
             if (error) {
                 console.log("error ocurred", error);
                 res.send({

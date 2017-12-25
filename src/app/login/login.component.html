@@ -3,7 +3,7 @@
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
-
+    <div *ngIf="alert" class="alert alert-danger">{{message}}</div>
     <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
 
     <mat-form-field class="input-width">

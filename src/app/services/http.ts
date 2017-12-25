@@ -20,14 +20,9 @@ export class HttpService implements OnDestroy {
   constructor(public http: Http) {
   }
 
-  getAllReports() {
-    return this.http.get(`${this.url}/getAllReports`,{ headers }).map(res =>{
-        return res.json()
-    });
-  }
-
-  getReport(id:any) {
-    return this.http.get(`${this.url}/getReport/${id}`,{ headers }).map(res =>{
+  get(funcName: String) {
+    console.log(`From Service -> ${this.url}/${funcName}`)
+    return this.http.get(`${this.url}/${funcName}`,{ headers }).map(res =>{
         return res.json()
     });
   }

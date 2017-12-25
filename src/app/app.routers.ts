@@ -9,6 +9,10 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component'
 import { AddCollectorComponent } from './add-collector/add-collector.component'
 import { DoctorListComponent } from './doctor-list/doctor-list.component'
 import { CollectorListComponent } from './collector-list/collector-list.component'
+import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component'
+import { CollectorDashboardComponent } from './collector-dashboard/collector-dashboard.component'
+import { AddReportComponent } from './add-report/add-report.component'
+
 
 export const router: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,6 +23,10 @@ export const router: Routes = [
     {path: 'admin-dashboard/add-collector', component: AddCollectorComponent },
     {path: 'admin-dashboard/doctor-list', component: DoctorListComponent },
     {path: 'admin-dashboard/collector-list', component: CollectorListComponent },
+    {path: 'doctor-dashboard', component: DoctorDashboardComponent },
+    {path: 'collector-dashboard', component: CollectorDashboardComponent },
+    {path: 'collector-dashboard/add-report', component: AddReportComponent },
+    {path: 'collector-dashboard/doctor-list', component: DoctorListComponent },
     {path: '**', component: HomeComponent},
 ];
 

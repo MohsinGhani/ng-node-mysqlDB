@@ -81,6 +81,7 @@ export class AddDoctorComponent implements OnInit {
     this._EmployeeService.addEmployee(formValue).subscribe((res) => {
       console.log(res)
     })
+    this.collectorForm.reset()
   }
   ngOnInit() {
   }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from './../services/employee.service';
+import { Router } from '@angular/router';
 
 
-interface User{
-  email:String,
+interface User {
+  email: String,
   password: String,
   post: String
 }
@@ -15,18 +17,36 @@ interface User{
 export class LoginComponent implements OnInit {
   hide = true;
   user: User = {
-    email:"",
+    email: "",
     password: "",
     post: ""
   };
-  constructor() {
+  alert = false;
+  message = '';
+  constructor(private _EmployeeService: EmployeeService, private _Router: Router) {
   }
 
   ngOnInit() {
   }
 
-  login(){
-    console.log(this.user)
+  login() {
+    this._EmployeeService.login(this.user).subscribe((res) => {
+      if (res.data[0]) {
+        if (res.data[0].status == 0) {
+          this.message = 'user is block by Admin';
+          this.alert = true
+        } else {
+          if (res.data[0].post == 'doctor') {
+            this._Router.navigate(['/doctor-dashboard']);
+          } else if (res.data[0].post == 'collector') {
+            this._Router.navigate(['/collector-dashboard']);
+          }
+        }
+      } else {
+        this.message = 'user email or password is incorrect';
+        this.alert = true
+      }
+    })
   }
 
 }

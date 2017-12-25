@@ -32,11 +32,6 @@ export class AdminLoginComponent implements OnInit {
     {
       this._route.navigate(['/admin-dashboard']);
     }
-    // let aa = {name: "Newww", dob: "21-01-2017", age: "20", gender: "Male"}
-    // this.http.post(aa).subscribe()
-    // this.http.getReport(1).subscribe((rr)=>{
-    //   console.log(rr)
-    // })
   }
 
 }
