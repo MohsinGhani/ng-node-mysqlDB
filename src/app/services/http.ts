@@ -18,7 +18,6 @@ export class HttpService implements OnDestroy {
   url: string = 'http://localhost:3000/api';
 
   constructor(public http: Http) {
-      console.log('hello service')
   }
 
   getAllReports() {
@@ -33,8 +32,8 @@ export class HttpService implements OnDestroy {
     });
   }
 
-  post(report: Object): Observable<any> {
-    return this.http.post('http://localhost:3000/api/add', report,{ headers })
+  post(data: Object, funcName: String): Observable<any> {
+    return this.http.post(`http://localhost:3000/api/${funcName}/`, data,{ headers })
     .map(res => res.json())
     .catch(err => err);
   }

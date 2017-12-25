@@ -37,6 +37,7 @@ class App {
         router.get('/getAllReports', Functions.getAllReports);
         router.get('/getReport/:id', Functions.getReport);
         router.post('/add/', Functions.post);
+        router.post('/addEmployee/', Functions.addEmployee);
         router.delete('/delete/:id', Functions.delete);
         router.put('/add/:id', Functions.put);
 

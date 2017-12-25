@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingComponents } from './app.routers';
 import { HttpModule } from '@angular/http';
+import {ErrorStateMatcher,ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { GeneralNavComponent } from './general-nav/general-nav.component';
@@ -18,6 +19,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpService } from './services/http'
 import { AdminService } from './services/admin.service';
+import { EmployeeService } from './services/employee.service'
 import { AdminNavComponent } from './admin-nav/admin-nav.component';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { AddCollectorComponent } from './add-collector/add-collector.component';
@@ -48,10 +50,11 @@ import { CollectorListComponent } from './collector-list/collector-list.componen
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
   ],
-  providers: [HttpService,AdminService],
+  providers: [HttpService,AdminService,EmployeeService,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

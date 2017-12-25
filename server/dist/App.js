@@ -29,6 +29,7 @@ class App {
         router.get('/getAllReports', functions_1.Functions.getAllReports);
         router.get('/getReport/:id', functions_1.Functions.getReport);
         router.post('/add/', functions_1.Functions.post);
+        router.post('/addEmployee/', functions_1.Functions.addEmployee);
         router.delete('/delete/:id', functions_1.Functions.delete);
         router.put('/add/:id', functions_1.Functions.put);
         this.express.use('/api/', router);

@@ -1,4 +1,23 @@
+import { Promise } from "q";
+
 var mysql = require('mysql');
+
+interface Employee {
+    name: String,
+    email: String,
+    address: String,
+    salary: String,
+    qualification: Array<any>,
+    dob: String,
+    age: String,
+    contact: String,
+    gender: String,
+    branchName: String
+    password: String,
+    post: String,
+    status: Number
+}
+
 const connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
@@ -52,6 +71,35 @@ export class Functions {
                 });
             }
         });
+    }
+
+    static addEmployee(req, res) {
+        let employee: Employee = req.body;
+        Promise((resolve, reject) => {
+            connection.query(`INSERT INTO Employees(name,email,address,salary,dob,age,contact,gender,branchName,password,post,status)
+            VALUES('${employee.name}','${employee.email}','${employee.address}',${employee.salary},'${employee.dob}','${employee.age}','${employee.contact}','${employee.gender}','${employee.branchName}','${employee.password}','${employee.post}', ${employee.status})`, (error, results, fields) => {
+                    if (error) {
+                        res.send({ "code" : 400, "failed": error })
+                    } else {
+                        resolve({ status: true, data: results });
+                    }
+                });
+        }).then((success) => {
+            Promise((res, rej) => {
+                connection.query(`SELECT id FROM Employees WHERE email = '${employee.email}'`, (error, results, fields) => {
+                    res(results[0].id)
+                });
+            }).then((id) => {
+                employee.qualification.forEach((degree) => {
+                    connection.query(`INSERT INTO Qualification(id,degree,post) VALUES(${id},'${degree}','${employee.post}')`, (error, results, fields) => {
+                        if(error){
+                            res.send({ "code" : 400, "failed": error })
+                        }
+                    });
+                })
+            })
+            res.send(success);
+        })
     }
 
     static post(req, res) {

@@ -12,7 +12,7 @@ interface Admin{
   styleUrls: ['./admin-login.component.scss']
 })
 export class AdminLoginComponent implements OnInit {
-  hide = true;
+    
   user: Admin = {
     email:"",
     password: ""

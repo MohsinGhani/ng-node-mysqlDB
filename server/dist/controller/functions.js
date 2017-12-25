@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const q_1 = require("q");
 var mysql = require('mysql');
 const connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -54,6 +55,35 @@ class Functions {
                     "data": results
                 });
             }
+        });
+    }
+    static addEmployee(req, res) {
+        let employee = req.body;
+        q_1.Promise((resolve, reject) => {
+            connection.query(`INSERT INTO Employees(name,email,address,salary,dob,age,contact,gender,branchName,password,post,status)
+            VALUES('${employee.name}','${employee.email}','${employee.address}',${employee.salary},'${employee.dob}','${employee.age}','${employee.contact}','${employee.gender}','${employee.branchName}','${employee.password}','${employee.post}', ${employee.status})`, (error, results, fields) => {
+                if (error) {
+                    res.send({ "code": 400, "failed": error });
+                }
+                else {
+                    resolve({ status: true, data: results });
+                }
+            });
+        }).then((success) => {
+            q_1.Promise((res, rej) => {
+                connection.query(`SELECT id FROM Employees WHERE email = '${employee.email}'`, (error, results, fields) => {
+                    res(results[0].id);
+                });
+            }).then((id) => {
+                employee.qualification.forEach((degree) => {
+                    connection.query(`INSERT INTO Qualification(id,degree,post) VALUES(${id},'${degree}','${employee.post}')`, (error, results, fields) => {
+                        if (error) {
+                            res.send({ "code": 400, "failed": error });
+                        }
+                    });
+                });
+            });
+            res.send(success);
         });
     }
     static post(req, res) {
