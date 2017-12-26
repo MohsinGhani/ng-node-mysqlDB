@@ -13,7 +13,6 @@ interface Report {
   gender: String,
   diseaseName: String,
   assignedDoctor: String,
-  collector: String,
   reciptDate: String,
   deliverDate: String,
   diagnosisDesc: String,
@@ -39,7 +38,6 @@ export class AddReportComponent implements OnInit {
     gender: '',
     diseaseName: '',
     assignedDoctor: '',
-    collector: '',
     reciptDate: '',
     deliverDate: '',
     diagnosisDesc: '',
@@ -59,7 +57,6 @@ export class AddReportComponent implements OnInit {
       gender: '',
       diseaseName: '',
       assignedDoctor: '',
-      collector: '',
       reciptDate: '',
       deliverDate: '',
       diagnosisDesc: '',
@@ -103,14 +100,15 @@ export class AddReportComponent implements OnInit {
       'deliverDate': [null, Validators.required],
       'code': [null, Validators.required],
       'amount': [null, Validators.required],
-      // 'collector': [1],
-      // 'diagnosisDesc': ['null'],
-      // 'isDiagnosed': [false]
+      'diagnosisDesc': [''],
+      'isDiagnosed': [false]
     });
   }
 
   addReport(reportData){
-    console.log(reportData)
+    this._EmployeeService.addReport(reportData).subscribe((res)=>{
+      console.log(res)
+    })
   }
 
   writeDummyData(){
@@ -120,13 +118,12 @@ export class AddReportComponent implements OnInit {
       address: 'NN',
       dob: '1997-01-21',
       age: '21',
-      contact: '0301245785',
+      contact: '03003625965',
       gender: 'male',
       diseaseName: 'Lagophthalmos',
       assignedDoctor: 'doc@gmail.com',
-      collector: 'c@c.com',
       reciptDate: '2017-11-25',
-      deliverDate: '2017-11-30',
+      deliverDate: '2017-12-28',
       diagnosisDesc: '',
       code: '1234',
       amount: '1000',

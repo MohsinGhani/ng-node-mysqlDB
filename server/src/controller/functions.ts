@@ -24,6 +24,24 @@ interface User {
     post: String
 }
 
+interface Report {
+    name: String,
+    email: String,
+    address: String,
+    dob: String,
+    age: String,
+    contact: String,
+    gender: String,
+    diseaseName: String,
+    assignedDoctor: String,
+    reciptDate: String,
+    deliverDate: String,
+    diagnosisDesc: String,
+    code: String,
+    amount: String,
+    isDiagnosed: Boolean
+  }
+
 const connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
@@ -144,6 +162,31 @@ export class Functions {
             })
             res.send(success);
         })
+    }
+
+    static addReport(req, res) {
+        let report: Report = req.body;
+
+        connection.query(`
+        INSERT INTO Reports(pName,pEmail,pAddress,pDob,pAge,pContact,pGender,diseaseName,assignedDoctor,reciptDate,deliverDate,diagnosisDesc,reportCode,amount,isDiagnosed)
+        VALUES(
+			'${report.name}','${report.email}','${report.address}','${report.dob}',${report.age},'${report.contact}','${report.gender}','${report.diseaseName}','${report.assignedDoctor}','${report.reciptDate}','${report.deliverDate}','${report.diagnosisDesc}','${report.code}',${report.amount},${report.isDiagnosed}
+        );
+        `, (error, results, fields) => {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                })
+            } else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
     }
 
     

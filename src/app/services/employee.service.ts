@@ -42,4 +42,8 @@ export class EmployeeService {
     login(user: User) {
         return this._http.post(user, 'login')
     }
+
+    addReport(report){
+        return this._http.post(report, 'addReport')
+    }
 }

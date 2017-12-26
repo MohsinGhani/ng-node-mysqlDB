@@ -34,12 +34,12 @@ class App {
     private routes(): void {
         let router = express.Router();
         // placeholder route handler
+        router.post('/login/', Functions.login);
         router.get('/getDoctors', Functions.getDoctors);
         router.get('/getCollectors', Functions.getCollectors)
-        router.get('/getReport/:id', Functions.getReport);
-        router.post('/add/', Functions.post);
         router.post('/addEmployee/', Functions.addEmployee);
-        router.post('/login/', Functions.login);
+        router.post('/addReport/', Functions.addReport);
+        router.get('/getReport/:id', Functions.getReport);
         router.delete('/delete/:id', Functions.delete);
         router.put('/add/:id', Functions.put);
 

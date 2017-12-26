@@ -32,7 +32,7 @@
         <mat-form-field class="input-width">
           <input type="text" matInput placeholder="Write Patient Contact Number" formControlName="contact" [(ngModel)]="report.contact"
             required>
-          <mat-error *ngIf="!reportForm.controls['contact'].valid && reportForm.controls['contact'].touched">
+          <mat-error *ngIf="!reportForm.controls['contact'].valid && reportForm.controls['contact'].touched ">
             Patient Contact Number is Required and must be contain 11 digits
           </mat-error>
         </mat-form-field>
