@@ -78,6 +78,7 @@ export class AddReportComponent implements OnInit {
   hide = true;
   reportForm: FormGroup;
   minDate = new Date();
+  isReportAddSuccess = false;
   constructor(private fb: FormBuilder, private _EmployeeService: EmployeeService) {
     _EmployeeService.getDoctors().subscribe((doctors) => {
       doctors.data.forEach(doctor => {
@@ -103,15 +104,19 @@ export class AddReportComponent implements OnInit {
       'diagnosisDesc': [''],
       'isDiagnosed': [false]
     });
+    // console.log(this._EmployeeService.getCurrentEmp('collector'))
   }
 
-  addReport(reportData){
-    this._EmployeeService.addReport(reportData).subscribe((res)=>{
-      console.log(res)
+  addReport(reportData) {
+    this._EmployeeService.addReport(reportData).subscribe((res) => {
+      if (res.code == 200) {
+        this.isReportAddSuccess = true;
+        this.reportForm.reset()
+      }
     })
   }
 
-  writeDummyData(){
+  writeDummyData() {
     this.report = {
       name: 'Hamza Khan',
       email: 'hamza@gmail.com',

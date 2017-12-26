@@ -37,8 +37,10 @@ export class LoginComponent implements OnInit {
           this.alert = true
         } else {
           if (res.data[0].post == 'doctor') {
+            localStorage.setItem('doctor',JSON.stringify(res.data[0]))
             this._Router.navigate(['/doctor-dashboard']);
           } else if (res.data[0].post == 'collector') {
+            localStorage.setItem('collector',JSON.stringify(res.data[0]))
             this._Router.navigate(['/collector-dashboard']);
           }
         }

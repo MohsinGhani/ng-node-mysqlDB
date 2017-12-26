@@ -32,18 +32,39 @@ export class EmployeeService {
     }
 
     getDoctors(){
-        return this._http.get('getDoctors');
+        return this._http.get('getDoctors','');
     }
 
     getCollectors(){
-        this._http.get('getCollectors').subscribe(console.log)
+        this._http.get('getCollectors','').subscribe(console.log)
     }
 
     login(user: User) {
         return this._http.post(user, 'login')
     }
 
+    getCurrentEmp(empType: String){
+        if(empType == 'doctor'){
+            return JSON.parse(localStorage.getItem('doctor')) || [];
+        }
+        else if(empType == 'collector'){
+            return JSON.parse(localStorage.getItem('collector')) || [];
+        }
+    }
+
+    logout(){
+        localStorage.setItem('doctor',JSON.stringify(''));
+        localStorage.setItem('collector',JSON.stringify(''))
+        return true;
+    }
+
     addReport(report){
         return this._http.post(report, 'addReport')
+    }
+
+    getReportsForDoctor(){
+        let drEmail = JSON.parse(localStorage.getItem('doctor')).email || [];
+        console.log(drEmail)
+        return this._http.get('getReportsForDoctor',drEmail)
     }
 }

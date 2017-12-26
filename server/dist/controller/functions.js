@@ -74,10 +74,10 @@ class Functions {
             }
         });
     }
-    static getReport(req, res) {
-        let id = req.params.id;
-        console.log(id);
-        connection.query(`SELECT * FROM Reports where id=${id}`, (error, results, fields) => {
+    static getReportsForDoctor(req, res) {
+        let drEmail = req.params.drEmail;
+        console.log(drEmail);
+        connection.query(`SELECT * FROM Reports where assignedDoctor='${drEmail}'`, (error, results, fields) => {
             if (error) {
                 console.log("error ocurred", error);
                 res.send({

@@ -1,7 +1,8 @@
 <app-collector-nav></app-collector-nav>
 
 <div class="container">
-  <mat-card>
+
+  <mat-card id="top">
     <mat-card-title>Add Report</mat-card-title>
     <mat-card-content>
 
@@ -96,8 +97,11 @@
             Amount is Required
           </mat-error>
         </mat-form-field>
+        <div class="alert alert-success" *ngIf="isReportAddSuccess">
+          <strong>Congratulation!</strong> Report has been add successfully.
+        </div>
         <br>
-        <button style="float:right" mat-raised-button color="primary" [disabled]="!reportForm.valid">Login</button>
+        <button style="float:right" mat-raised-button color="primary" [disabled]="!reportForm.valid">Submit</button>
       </form>
       <br>
       <button mat-raised-button color="primary" (click)="writeDummyData()">Write Dummy Data</button>

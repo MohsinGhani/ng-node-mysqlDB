@@ -20,19 +20,19 @@ export class HttpService implements OnDestroy {
   constructor(public http: Http) {
   }
 
-  get(funcName: String) {
-    console.log(`From Service -> ${this.url}/${funcName}`)
-    return this.http.get(`${this.url}/${funcName}`,{ headers }).map(res =>{
-        return res.json()
-    });
-  }
-
+  
   post(data: Object, funcName: String): Observable<any> {
     return this.http.post(`http://localhost:3000/api/${funcName}/`, data,{ headers })
     .map(res => res.json())
     .catch(err => err);
   }
-
+  
+  get(funcName: String, params:String) {
+    return this.http.get(`${this.url}/${funcName}/${params}`,{ headers }).map(res =>{
+        return res.json()
+    });
+  }
+  
   ngOnDestroy() {
     if (!this.subscription.closed) {
       this.subscription.unsubscribe();

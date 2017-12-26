@@ -39,7 +39,7 @@ class App {
         router.get('/getCollectors', Functions.getCollectors)
         router.post('/addEmployee/', Functions.addEmployee);
         router.post('/addReport/', Functions.addReport);
-        router.get('/getReport/:id', Functions.getReport);
+        router.get('/getReportsForDoctor/:drEmail', Functions.getReportsForDoctor);
         router.delete('/delete/:id', Functions.delete);
         router.put('/add/:id', Functions.put);
 

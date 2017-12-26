@@ -1,3 +1,87 @@
-<p>
-  report-list works!
-</p>
+<app-doctor-nav></app-doctor-nav>
+
+
+<div class="container">
+  <br>
+  <mat-accordion *ngFor="let report of reports">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{report.diseaseName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{report.pName}} --- {{report.reciptDate}} --- {{report.deliverDate}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <hr>
+      <div *ngIf="!diagnoseMode">
+        <div class="row detail">
+          <div class="col-sm-6">Patient Name</div>
+          <div class="col-sm-6">{{report.pName}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Disease Name</div>
+          <div class="col-sm-6">{{report.diseaseName}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Patient Name</div>
+          <div class="col-sm-6">{{report.pEmail}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Patient Address</div>
+          <div class="col-sm-6">{{report.pAddress}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Patient Age</div>
+          <div class="col-sm-6">{{report.pAge}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Patient Date of Birth</div>
+          <div class="col-sm-6">{{report.pDob}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Patient Contact Number</div>
+          <div class="col-sm-6">{{report.pContact}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Patient Gender</div>
+          <div class="col-sm-6">{{report.pGender}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Report Recipt Date</div>
+          <div class="col-sm-6">{{report.reciptDate}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-6">Report Deliver Date</div>
+          <div class="col-sm-6">{{report.deliverDate}}</div>
+        </div>
+        <hr>
+        <div class="row detail">
+          <div class="col-sm-12">
+            <button class="dia-btn" mat-raised-button color="accent" *ngIf="!report.isDiagnosed" (click)="diagnosedStart()">Click to Start Diagnosation Report</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="diagnoseMode">
+        <h3 style="text-align:center">Diagnosation Start</h3>
+        <mat-form-field class="full-width">
+          <textarea matInput placeholder="Write Diagnose Description"></textarea>
+        </mat-form-field>
+        <div class="row detail">
+          <div class="col-sm-12">
+            <button class="dia-btn" mat-raised-button color="accent" (click)="diagnosedDone()">Done</button>
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
