@@ -9,6 +9,8 @@ import { EmployeeService } from './../services/employee.service'
 export class ReportListComponent implements OnInit {
   reports = [];
   diagnoseMode = false;
+  diagnoseDesc = '';
+  step = 0;
   constructor(private _EmployeeService:EmployeeService) {
     _EmployeeService.getReportsForDoctor().subscribe((res)=>{
       console.log(res.data)
@@ -21,6 +23,22 @@ export class ReportListComponent implements OnInit {
 
   diagnosedStart(){
     this.diagnoseMode = true;
+  }
+
+  diagnosedDone(i){
+    console.log(i)
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 
 }
