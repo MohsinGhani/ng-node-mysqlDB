@@ -77,7 +77,27 @@ export class Functions {
                 });
             }
         });
-    }   
+    }
+    
+    static getReport(req, res) {
+        let code = req.params.code;
+        console.log(code)
+        connection.query(`SELECT * FROM Reports where reportCode='${code}'`, (error, results, fields) => {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                })
+            } else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
+    }
 
     static getDoctors(req, res) {
         connection.query(`SELECT * FROM Employees WHERE post = 'doctor'`, function (error, results, fields) {

@@ -29,10 +29,11 @@ class App {
         router.post('/login/', functions_1.Functions.login);
         router.get('/getDoctors', functions_1.Functions.getDoctors);
         router.get('/getCollectors', functions_1.Functions.getCollectors);
+        router.get('/getReportsForDoctor/:drEmail', functions_1.Functions.getReportsForDoctor);
+        router.get('/getReport/:code', functions_1.Functions.getReport);
         router.post('/addEmployee/', functions_1.Functions.addEmployee);
         router.post('/addReport/', functions_1.Functions.addReport);
         router.post('/diagnosedReport/', functions_1.Functions.diagnosedReport);
-        router.get('/getReportsForDoctor/:drEmail', functions_1.Functions.getReportsForDoctor);
         router.delete('/delete/:id', functions_1.Functions.delete);
         router.put('/add/:id', functions_1.Functions.put);
         this.express.use('/api/', router);

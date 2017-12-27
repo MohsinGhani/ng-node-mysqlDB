@@ -71,4 +71,8 @@ export class EmployeeService {
     diagnosedReport(report){
         return this._http.post(report,'diagnosedReport')
     }
+
+    getReport(code){
+        return this._http.get('getReport',code)
+    }
 }

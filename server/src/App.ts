@@ -37,10 +37,11 @@ class App {
         router.post('/login/', Functions.login);
         router.get('/getDoctors', Functions.getDoctors);
         router.get('/getCollectors', Functions.getCollectors)
+        router.get('/getReportsForDoctor/:drEmail', Functions.getReportsForDoctor);
+        router.get('/getReport/:code', Functions.getReport);
         router.post('/addEmployee/', Functions.addEmployee);
         router.post('/addReport/', Functions.addReport);
         router.post('/diagnosedReport/', Functions.diagnosedReport);
-        router.get('/getReportsForDoctor/:drEmail', Functions.getReportsForDoctor);
         router.delete('/delete/:id', Functions.delete);
         router.put('/add/:id', Functions.put);
 
