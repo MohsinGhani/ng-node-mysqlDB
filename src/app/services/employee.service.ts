@@ -67,4 +67,8 @@ export class EmployeeService {
         console.log(drEmail)
         return this._http.get('getReportsForDoctor',drEmail)
     }
+
+    diagnosedReport(report){
+        return this._http.post(report,'diagnosedReport')
+    }
 }

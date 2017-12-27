@@ -28,6 +28,7 @@ export class HttpService implements OnDestroy {
   }
   
   get(funcName: String, params:String) {
+    console.log(`${this.url}/${funcName}/${JSON.stringify(params)}`)
     return this.http.get(`${this.url}/${funcName}/${params}`,{ headers }).map(res =>{
         return res.json()
     });

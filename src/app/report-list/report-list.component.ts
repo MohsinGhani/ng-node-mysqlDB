@@ -26,7 +26,12 @@ export class ReportListComponent implements OnInit {
   }
 
   diagnosedDone(i){
-    console.log(i)
+    this.reports[i].diagnosisDesc = this.diagnoseDesc;
+    this.reports[i].isDiagnosed = true;
+    this._EmployeeService.diagnosedReport(this.reports[i]).subscribe((res)=>{
+    })
+    this.diagnoseMode = false;
+    this.diagnoseDesc = '';
   }
 
   setStep(index: number) {
