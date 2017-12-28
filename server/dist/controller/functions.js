@@ -40,7 +40,7 @@ class Functions {
     }
     static getReport(req, res) {
         let code = req.params.code;
-        console.log(code);
+        // console.log(code)
         connection.query(`SELECT * FROM Reports where reportCode='${code}'`, (error, results, fields) => {
             if (error) {
                 console.log("error ocurred", error);
