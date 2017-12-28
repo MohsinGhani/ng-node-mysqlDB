@@ -13,6 +13,9 @@ import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.co
 import { CollectorDashboardComponent } from './collector-dashboard/collector-dashboard.component'
 import { AddReportComponent } from './add-report/add-report.component'
 import { ReportListComponent } from './report-list/report-list.component'
+import { AdminDrListComponent } from './admin-dr-list/admin-dr-list.component'
+import { AdminCollectorListComponent } from './admin-collector-list/admin-collector-list.component'
+import { AdminReportListComponent } from './admin-report-list/admin-report-list.component'
 
 
 export const router: Routes = [
@@ -22,8 +25,9 @@ export const router: Routes = [
     {path: 'admin-dashboard', component: AdminDashboardComponent },
     {path: 'admin-dashboard/add-doctor', component: AddDoctorComponent },
     {path: 'admin-dashboard/add-collector', component: AddCollectorComponent },
-    {path: 'admin-dashboard/doctor-list', component: DoctorListComponent },
-    {path: 'admin-dashboard/collector-list', component: CollectorListComponent },
+    {path: 'admin-dashboard/doctor-list', component: AdminDrListComponent },
+    {path: 'admin-dashboard/collector-list', component: AdminCollectorListComponent },
+    {path: 'admin-dashboard/report-list', component: AdminReportListComponent },
     {path: 'collector-dashboard', component: CollectorDashboardComponent },
     {path: 'collector-dashboard/add-report', component: AddReportComponent },
     {path: 'collector-dashboard/doctor-list', component: DoctorListComponent },

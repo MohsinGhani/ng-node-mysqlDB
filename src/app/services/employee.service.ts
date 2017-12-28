@@ -36,7 +36,7 @@ export class EmployeeService {
     }
 
     getCollectors(){
-        this._http.get('getCollectors','').subscribe(console.log)
+        return this._http.get('getCollectors','')
     }
 
     login(user: User) {
@@ -64,8 +64,11 @@ export class EmployeeService {
 
     getReportsForDoctor(){
         let drEmail = JSON.parse(localStorage.getItem('doctor')).email || [];
-        console.log(drEmail)
         return this._http.get('getReportsForDoctor',drEmail)
+    }
+
+    getReports(){
+        return this._http.get('getReports','')
     }
 
     diagnosedReport(report){

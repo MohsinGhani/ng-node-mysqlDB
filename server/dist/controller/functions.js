@@ -114,6 +114,24 @@ class Functions {
             }
         });
     }
+    static getReports(req, res) {
+        connection.query(`SELECT * FROM Reports`, (error, results, fields) => {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                });
+            }
+            else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
+    }
     static diagnosedReport(req, res) {
         let report = req.body;
         console.log('report', report.id);

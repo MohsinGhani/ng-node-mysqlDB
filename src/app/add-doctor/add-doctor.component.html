@@ -20,6 +20,9 @@
             Please enter a valid email address
           </mat-error>
         </mat-form-field>
+        <div class="alert alert-danger" role="alert" *ngIf="emailAlert">
+            <strong>Dublicate Email!</strong> This Email Address already Exist in your Employees.
+          </div>
         <br>
         <mat-form-field class="input-width">
           <input type="text" matInput placeholder="Write Doctor Salary" formControlName="salary" [(ngModel)]="doctor.salary">
@@ -98,7 +101,7 @@
           </mat-error>
         </mat-form-field>
         <br>
-        <button style="float:right" mat-raised-button color="primary" [disabled]="!collectorForm.valid">Login</button>
+        <button style="float:right" mat-raised-button color="primary" [disabled]="!collectorForm.valid">Add Doctor</button>
       </form>
       <br>
       <button mat-raised-button color="primary" (click)="writeDummyData()">Write Dummy Data</button>

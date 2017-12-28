@@ -19,7 +19,10 @@
           <mat-error *ngIf="!collectorForm.controls['email'].valid && collectorForm.controls['email'].touched || collectorForm.controls['email'].dirty">
             Please enter a valid email address
           </mat-error>
-        </mat-form-field>
+        </mat-form-field><br>
+        <div class="alert alert-danger" role="alert" *ngIf="emailAlert">
+          <strong>Dublicate Email!</strong> This Email Address already Exist in your Employees.
+        </div>
         <br>
         <mat-form-field class="input-width">
           <input type="text" matInput placeholder="Write Doctor Salary" formControlName="salary" [(ngModel)]="doctor.salary">
@@ -91,14 +94,15 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="input-width">
-          <input matInput placeholder="Enter Doctor password" formControlName="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="doctor.password" required>
+          <input matInput placeholder="Enter Doctor password" formControlName="password" [type]="hide ? 'password' : 'text'" [(ngModel)]="doctor.password"
+            required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
           <mat-error *ngIf="!collectorForm.controls['password'].valid && collectorForm.controls['password'].touched">
             Write Doctor Password
           </mat-error>
         </mat-form-field>
         <br>
-        <button style="float:right" mat-raised-button color="primary" [disabled]="!collectorForm.valid">Login</button>
+        <button style="float:right" mat-raised-button color="primary" [disabled]="!collectorForm.valid">Add Collector</button>
       </form>
       <br>
       <button mat-raised-button color="primary" (click)="writeDummyData()">Write Dummy Data</button>

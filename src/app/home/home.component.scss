@@ -1,9 +1,23 @@
 .container{
     background: #fff;
-    min-height: 800px;
-    margin-top: 10px;
+    min-height: 250px;
+    margin-top: 25px;
     border-radius: 5px;
     box-shadow: 0px 0px 1px #001a33;
+
+    h2{
+        text-align: center;
+        border: 5px solid #99c2ff;
+        padding: 10px;
+        max-width: 350px;
+        margin: 0 auto;
+        border-radius: 50px 0px 50px 0px;
+        color: #004d80;
+    }
+
+    button{
+        width: 100%;
+    }
 }
 
 .full-width{

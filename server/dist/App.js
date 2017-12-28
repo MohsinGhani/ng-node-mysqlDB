@@ -30,6 +30,7 @@ class App {
         router.get('/getDoctors', functions_1.Functions.getDoctors);
         router.get('/getCollectors', functions_1.Functions.getCollectors);
         router.get('/getReportsForDoctor/:drEmail', functions_1.Functions.getReportsForDoctor);
+        router.get('/getReports/', functions_1.Functions.getReports);
         router.get('/getReport/:code', functions_1.Functions.getReport);
         router.post('/addEmployee/', functions_1.Functions.addEmployee);
         router.post('/addReport/', functions_1.Functions.addReport);

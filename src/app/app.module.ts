@@ -26,7 +26,10 @@ import { AddCollectorComponent } from './add-collector/add-collector.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { CollectorListComponent } from './collector-list/collector-list.component';
 import { AddReportComponent } from './add-report/add-report.component';
-import { ReportListComponent } from './report-list/report-list.component'
+import { ReportListComponent } from './report-list/report-list.component';
+import { AdminDrListComponent } from './admin-dr-list/admin-dr-list.component';
+import { AdminCollectorListComponent } from './admin-collector-list/admin-collector-list.component';
+import { AdminReportListComponent } from './admin-report-list/admin-report-list.component'
 
 
 @NgModule({
@@ -48,6 +51,9 @@ import { ReportListComponent } from './report-list/report-list.component'
     CollectorListComponent,
     AddReportComponent,
     ReportListComponent,
+    AdminDrListComponent,
+    AdminCollectorListComponent,
+    AdminReportListComponent,
   ],
   imports: [
     BrowserModule,

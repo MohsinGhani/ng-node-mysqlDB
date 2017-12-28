@@ -58,7 +58,7 @@ export class AddDoctorComponent implements OnInit {
   ];
   hide = true;
   collectorForm: FormGroup;
-
+  emailAlert = false;
   constructor(private fb: FormBuilder, private _EmployeeService: EmployeeService) {
     this.collectorForm = fb.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
@@ -78,10 +78,15 @@ export class AddDoctorComponent implements OnInit {
   }
 
   addCollector(formValue) {
+    this.emailAlert = false;
     this._EmployeeService.addEmployee(formValue).subscribe((res) => {
-      console.log(res)
+      if(res.failed.code == 'ER_DUP_ENTRY'){
+        this.emailAlert = true;
+      }
+      else if(res.status){
+        this.collectorForm.reset()
+      }
     })
-    this.collectorForm.reset()
   }
   ngOnInit() {
   }
