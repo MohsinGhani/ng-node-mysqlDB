@@ -79,6 +79,7 @@ export class AddReportComponent implements OnInit {
   reportForm: FormGroup;
   minDate = new Date();
   isReportAddSuccess = false;
+  reportCodeCheck = false;
   constructor(private fb: FormBuilder, private _EmployeeService: EmployeeService) {
     _EmployeeService.getDoctors().subscribe((doctors) => {
       doctors.data.forEach(doctor => {
@@ -108,10 +109,20 @@ export class AddReportComponent implements OnInit {
   }
 
   addReport(reportData) {
+    let date = reportData.deliverDate;
+    let day = reportData.deliverDate.getDate();
+    let month = reportData.deliverDate.getMonth() + 1;
+    let year = reportData.deliverDate.getFullYear();
+    let deliverDate = `${year}-${month}-${day}`
+    reportData['deliverDate'] = deliverDate
     this._EmployeeService.addReport(reportData).subscribe((res) => {
       if (res.code == 200) {
+        this.reportCodeCheck = false;
         this.isReportAddSuccess = true;
         this.reportForm.reset()
+      }
+      else if(res.code == 400){
+        this.reportCodeCheck = true;
       }
     })
   }
@@ -127,10 +138,10 @@ export class AddReportComponent implements OnInit {
       gender: 'male',
       diseaseName: 'Lagophthalmos',
       assignedDoctor: 'doc@gmail.com',
-      reciptDate: '2017-11-25',
-      deliverDate: '2017-12-28',
+      reciptDate: '',
+      deliverDate: '',
       diagnosisDesc: '',
-      code: '1234',
+      code: '0000',
       amount: '1000',
       isDiagnosed: false
     }

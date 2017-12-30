@@ -10,9 +10,9 @@ import { AdminService } from './../services/admin.service';
 export class AdminDashboardComponent implements OnInit {
 
   constructor(private _route: Router, private service: AdminService) {
-    if (!this.service.adminAuthentication()) {
-      this._route.navigate(['home']);
-}
+    if (localStorage.getItem("admin") == "") {
+      this._route.navigate(['admin']);
+    }
   }
 
   ngOnInit() {

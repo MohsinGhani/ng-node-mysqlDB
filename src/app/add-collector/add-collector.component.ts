@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { EmployeeService } from './../services/employee.service';
+import { Router } from '@angular/router'
+import { AdminService } from './../services/admin.service'
 
 interface Employee {
   name: String,
@@ -59,7 +61,10 @@ export class AddCollectorComponent implements OnInit {
   hide = true;
   collectorForm: FormGroup;
   emailAlert = false
-  constructor(private fb: FormBuilder, private _EmployeeService: EmployeeService) {
+  constructor(private _Router: Router, private fb: FormBuilder, private _EmployeeService: EmployeeService, private _AdminService: AdminService) {
+    if (localStorage.getItem("admin") == "") {
+      this._Router.navigate(['admin']);
+    }
     this.collectorForm = fb.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(30)])],
       'email': [null, Validators.compose([Validators.required, Validators.email])],
@@ -80,11 +85,11 @@ export class AddCollectorComponent implements OnInit {
   addCollector(formValue) {
     this.emailAlert = false;
     this._EmployeeService.addEmployee(formValue).subscribe((res) => {
-      if(res.failed.code == 'ER_DUP_ENTRY'){
-        this.emailAlert = true;
-      }
-      else if(res.status){
+      if(res.status){
         this.collectorForm.reset()
+        this._Router.navigate(['admin-dashboard/collector-list'])
+      }else if(res.failed.code == 'ER_DUP_ENTRY'){
+        this.emailAlert = true;
       }
     })
   }

@@ -53,8 +53,8 @@ export class EmployeeService {
     }
 
     logout(){
-        localStorage.setItem('doctor',JSON.stringify(''));
-        localStorage.setItem('collector',JSON.stringify(''))
+        localStorage.setItem('doctor',undefined);
+        localStorage.setItem('collector',undefined)
         return true;
     }
 
@@ -77,5 +77,9 @@ export class EmployeeService {
 
     getReport(code){
         return this._http.get('getReport',code)
+    }
+
+    updateReport(report){
+        return this._http.post(report,'updateReport')
     }
 }

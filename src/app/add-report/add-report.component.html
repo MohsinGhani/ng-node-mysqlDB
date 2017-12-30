@@ -100,6 +100,9 @@
           <div class="alert alert-success" *ngIf="isReportAddSuccess">
             <strong>Congratulation!</strong> Report has been add successfully.
           </div>
+          <div class="alert alert-danger" *ngIf="reportCodeCheck">
+              <strong>Alert!</strong> Kindly Check Report Code and Assigned Doctor.
+            </div>
         <br>
         <button style="float:right" mat-raised-button color="primary" [disabled]="!reportForm.valid">Submit</button>
       </form>

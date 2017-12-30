@@ -29,7 +29,10 @@ import { AddReportComponent } from './add-report/add-report.component';
 import { ReportListComponent } from './report-list/report-list.component';
 import { AdminDrListComponent } from './admin-dr-list/admin-dr-list.component';
 import { AdminCollectorListComponent } from './admin-collector-list/admin-collector-list.component';
-import { AdminReportListComponent } from './admin-report-list/admin-report-list.component'
+import { AdminReportListComponent } from './admin-report-list/admin-report-list.component';
+import { EmpDetailDialogComponent } from './emp-detail-dialog/emp-detail-dialog.component';
+import { ClReportListComponent } from './cl-report-list/cl-report-list.component';
+import { ReportDetailDialogComponent } from './report-detail-dialog/report-detail-dialog.component'
 
 
 @NgModule({
@@ -54,6 +57,9 @@ import { AdminReportListComponent } from './admin-report-list/admin-report-list.
     AdminDrListComponent,
     AdminCollectorListComponent,
     AdminReportListComponent,
+    EmpDetailDialogComponent,
+    ClReportListComponent,
+    ReportDetailDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +69,10 @@ import { AdminReportListComponent } from './admin-report-list/admin-report-list.
     ReactiveFormsModule,
     AppRoutingModule,
     HttpModule,
+  ],
+  entryComponents:[
+    EmpDetailDialogComponent,
+    ReportDetailDialogComponent
   ],
   providers: [HttpService,AdminService,EmployeeService,{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]

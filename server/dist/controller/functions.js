@@ -152,6 +152,34 @@ class Functions {
             }
         });
     }
+    static updateReport(req, res) {
+        let report = req.body;
+        console.log('report', report.id);
+        connection.query(`UPDATE Reports SET 
+        pName='${report.pName}',
+        pContact='${report.pContact}',
+        pEmail='${report.pEmail}',
+        diseaseName='${report.diseaseName}',
+        deliverDate='${report.deliverDate}',
+        amount='${report.amount}',
+        reportCode='${report.reportCode}'
+            WHERE id = ${report.id};`, (error, results, fields) => {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                });
+            }
+            else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
+    }
     static addEmployee(req, res) {
         let employee = req.body;
         q_1.Promise((resolve, reject) => {

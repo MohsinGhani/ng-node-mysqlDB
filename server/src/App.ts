@@ -43,6 +43,7 @@ class App {
         router.post('/addEmployee/', Functions.addEmployee);
         router.post('/addReport/', Functions.addReport);
         router.post('/diagnosedReport/', Functions.diagnosedReport);
+        router.post('/updateReport/', Functions.updateReport);
         router.delete('/delete/:id', Functions.delete);
         router.put('/add/:id', Functions.put);
 

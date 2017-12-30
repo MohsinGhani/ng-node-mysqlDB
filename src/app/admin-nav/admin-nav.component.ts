@@ -16,7 +16,7 @@ export class AdminNavComponent implements OnInit {
 
   logout() {
     this.service.logout();
-    this._route.navigate(['home']);
+    this._route.navigate(['admin']);
   }
 
 }

@@ -24,6 +24,12 @@ export class LoginComponent implements OnInit {
   alert = false;
   message = '';
   constructor(private _EmployeeService: EmployeeService, private _Router: Router) {
+    // if (localStorage.getItem("collector") !== "") {
+    //   this._Router.navigate(['collector-dashboard']);
+    // }
+    // else if(localStorage.getItem("doctor") !== ""){
+    //   this._Router.navigate(['doctor-dashboard']);
+    // }
   }
 
   ngOnInit() {

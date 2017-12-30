@@ -27,6 +27,7 @@ export class AdminService {
   }
 
   logout() {
+    localStorage.setItem("admin", "");
     document.cookie = 'adminSession=' + '' + ';';
   }
 
