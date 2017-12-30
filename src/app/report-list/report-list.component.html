@@ -69,6 +69,11 @@
         </div>
         <hr>
         <div class="row detail">
+            <div class="col-sm-6">Report Code</div>
+            <div class="col-sm-6">{{report.reportCode}}</div>
+          </div>
+          <hr>
+        <div class="row detail">
           <div class="col-sm-12">
             <button class="dia-btn" mat-raised-button color="accent" *ngIf="!report.isDiagnosed" (click)="diagnosedStart()">Click to Start Diagnosation Report</button>
           </div>
