@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import { EmployeeService } from './../services/employee.service'
 
 @Component({
   selector: 'app-emp-detail-dialog',
@@ -6,8 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./emp-detail-dialog.component.scss']
 })
 export class EmpDetailDialogComponent implements OnInit {
+  updateMode = false
+  constructor(public _MatDialogRef: MatDialogRef<EmpDetailDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private _EmployeeService: EmployeeService) {
+  }
 
-  constructor() { }
+  updateModeOn() {
+    this.updateMode = true
+  }
+
+  updateReport(){
+    this._EmployeeService.updateReport(this.data).subscribe((res)=>{
+      if(res.code == 200){
+        this._MatDialogRef.close();
+      }
+    })
+  }
+
+  onCloseCancel() {
+    this._MatDialogRef.close()
+  }
 
   ngOnInit() {
   }
