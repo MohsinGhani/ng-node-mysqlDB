@@ -40,7 +40,7 @@ interface Report {
     code: String,
     amount: String,
     isDiagnosed: Boolean
-  }
+}
 
 const connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -59,8 +59,8 @@ connection.connect(function (err) {
 });
 export class Functions {
     constructor() { }
-    
-    static login(req, res){
+
+    static login(req, res) {
         let user: User = req.body;
         connection.query(`SELECT * FROM Employees WHERE email = '${user.email}' AND password = '${user.password}' AND post = '${user.post}';`, function (error, results, fields) {
             if (error) {
@@ -78,7 +78,7 @@ export class Functions {
             }
         });
     }
-    
+
     static getReport(req, res) {
         let code = req.params.code;
         // console.log(code)
@@ -175,7 +175,7 @@ export class Functions {
 
     static diagnosedReport(req, res) {
         let report = req.body;
-        console.log('report',report.id)
+        console.log('report', report.id)
         connection.query(`UPDATE Reports SET diagnosisDesc='${report.diagnosisDesc}', isDiagnosed=${report.isDiagnosed} WHERE id = ${report.id};`, (error, results, fields) => {
             if (error) {
                 console.log("error ocurred", error);
@@ -195,7 +195,7 @@ export class Functions {
 
     static updateReport(req, res) {
         let report = req.body;
-        console.log('report',report.id)
+        console.log('report', report.id)
         connection.query(`UPDATE Reports SET 
         pName='${report.pName}',
         pContact='${report.pContact}',
@@ -205,22 +205,67 @@ export class Functions {
         amount='${report.amount}',
         reportCode='${report.reportCode}'
             WHERE id = ${report.id};`, (error, results, fields) => {
-            if (error) {
-                console.log("error ocurred", error);
-                res.send({
-                    "code": 400,
-                    "failed": "error ocurred"
-                })
-            } else {
-                // console.log('The solution is: ', results);
-                res.send({
-                    "code": 200,
-                    "data": results
-                });
-            }
-        });
+                if (error) {
+                    console.log("error ocurred", error);
+                    res.send({
+                        "code": 400,
+                        "failed": "error ocurred"
+                    })
+                } else {
+                    // console.log('The solution is: ', results);
+                    res.send({
+                        "code": 200,
+                        "data": results
+                    });
+                }
+            });
     }
-    
+
+    static updateEmp(req, res) {
+        let emp = req.body;
+        console.log('emp', emp.id)
+        connection.query(`UPDATE Employees SET 
+        name='${emp.name}',
+        contact='${emp.contact}',
+        age='${emp.age}',
+        salary='${emp.salary}'
+            WHERE id = ${emp.id};`, (error, results, fields) => {
+                if (error) {
+                    console.log("error ocurred", error);
+                    res.send({
+                        "code": 400,
+                        "failed": "error ocurred"
+                    })
+                } else {
+                    // console.log('The solution is: ', results);
+                    res.send({
+                        "code": 200,
+                        "data": results
+                    });
+                }
+            });
+    }
+
+    static changeEmpStatus(req, res) {
+        let user = req.body;
+        console.log('user id and status', user.id, user.status)
+        connection.query(`UPDATE Employees SET status='${user.status}'
+            WHERE id = ${user.id};`, (error, results, fields) => {
+                if (error) {
+                    console.log("error ocurred", error);
+                    res.send({
+                        "code": 400,
+                        "failed": "error ocurred"
+                    })
+                } else {
+                    // console.log('The solution is: ', results);
+                    res.send({
+                        "code": 200,
+                        "data": results
+                    });
+                }
+            });
+    }
 
     static addEmployee(req, res) {
         let employee: Employee = req.body;
@@ -228,7 +273,7 @@ export class Functions {
             connection.query(`INSERT INTO Employees(name,email,address,salary,dob,age,contact,gender,branchName,password,post,status)
             VALUES('${employee.name}','${employee.email}','${employee.address}',${employee.salary},'${employee.dob}','${employee.age}','${employee.contact}','${employee.gender}','${employee.branchName}','${employee.password}','${employee.post}', ${employee.status})`, (error, results, fields) => {
                     if (error) {
-                        res.send({ "code" : 400, "failed": error })
+                        res.send({ "code": 400, "failed": error })
                     } else {
                         resolve({ status: true, data: results });
                     }
@@ -241,8 +286,8 @@ export class Functions {
             }).then((id) => {
                 employee.qualification.forEach((degree) => {
                     connection.query(`INSERT INTO Qualification(id,degree,post) VALUES(${id},'${degree}','${employee.post}')`, (error, results, fields) => {
-                        if(error){
-                            res.send({ "code" : 400, "failed": error })
+                        if (error) {
+                            res.send({ "code": 400, "failed": error })
                         }
                     });
                 })
@@ -260,23 +305,23 @@ export class Functions {
 			'${report.name}','${report.email}','${report.address}','${report.dob}',${report.age},'${report.contact}','${report.gender}','${report.diseaseName}','${report.assignedDoctor}','${report.reciptDate}','${report.deliverDate}','${report.diagnosisDesc}','${report.code}',${report.amount},${report.isDiagnosed}
         );
         `, (error, results, fields) => {
-            if (error) {
-                console.log("error ocurred", error);
-                res.send({
-                    "code": 400,
-                    "failed": "error ocurred"
-                })
-            } else {
-                // console.log('The solution is: ', results);
-                res.send({
-                    "code": 200,
-                    "data": results
-                });
-            }
-        });
+                if (error) {
+                    console.log("error ocurred", error);
+                    res.send({
+                        "code": 400,
+                        "failed": "error ocurred"
+                    })
+                } else {
+                    // console.log('The solution is: ', results);
+                    res.send({
+                        "code": 200,
+                        "data": results
+                    });
+                }
+            });
     }
 
-    
+
 
     static post(req, res) {
         console.log('req.body ', req.body);

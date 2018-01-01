@@ -36,6 +36,8 @@ class App {
         router.post('/addReport/', functions_1.Functions.addReport);
         router.post('/diagnosedReport/', functions_1.Functions.diagnosedReport);
         router.post('/updateReport/', functions_1.Functions.updateReport);
+        router.post('/updateEmp/', functions_1.Functions.updateEmp);
+        router.post('/changeEmpStatus/', functions_1.Functions.changeEmpStatus);
         router.delete('/delete/:id', functions_1.Functions.delete);
         router.put('/add/:id', functions_1.Functions.put);
         this.express.use('/api/', router);

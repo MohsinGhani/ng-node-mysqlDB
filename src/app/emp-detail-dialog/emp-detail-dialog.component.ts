@@ -11,14 +11,32 @@ export class EmpDetailDialogComponent implements OnInit {
   updateMode = false
   constructor(public _MatDialogRef: MatDialogRef<EmpDetailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private _EmployeeService: EmployeeService) {
-  }
+    }
 
   updateModeOn() {
     this.updateMode = true
   }
 
-  updateReport(){
-    this._EmployeeService.updateReport(this.data).subscribe((res)=>{
+  block(){
+    this.data.status = 0;
+    this._EmployeeService.changeEmpStatus(this.data).subscribe((res)=>{
+      if(res.code == 200){
+        this._MatDialogRef.close();
+      }
+    })
+  }
+
+  unblock(){
+    this.data.status = 1;
+    this._EmployeeService.changeEmpStatus(this.data).subscribe((res)=>{
+      if(res.code == 200){
+        this._MatDialogRef.close();
+      }
+    })
+  }
+
+  updateEmp(){
+    this._EmployeeService.updateEmp(this.data).subscribe((res)=>{
       if(res.code == 200){
         this._MatDialogRef.close();
       }

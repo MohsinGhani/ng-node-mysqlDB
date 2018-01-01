@@ -180,6 +180,52 @@ class Functions {
             }
         });
     }
+    static updateEmp(req, res) {
+        let emp = req.body;
+        console.log('report', emp.id);
+        connection.query(`UPDATE Employees SET 
+        name='${emp.name}',
+        contact='${emp.contact}',
+        age='${emp.age}',
+        salary='${emp.salary}'
+            WHERE id = ${emp.id};`, (error, results, fields) => {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                });
+            }
+            else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
+    }
+    static changeEmpStatus(req, res) {
+        let user = req.body;
+        console.log('user id and status', user.id, user.status);
+        connection.query(`UPDATE Employees SET status='${user.status}'
+            WHERE id = ${user.id};`, (error, results, fields) => {
+            if (error) {
+                console.log("error ocurred", error);
+                res.send({
+                    "code": 400,
+                    "failed": "error ocurred"
+                });
+            }
+            else {
+                // console.log('The solution is: ', results);
+                res.send({
+                    "code": 200,
+                    "data": results
+                });
+            }
+        });
+    }
     static addEmployee(req, res) {
         let employee = req.body;
         q_1.Promise((resolve, reject) => {

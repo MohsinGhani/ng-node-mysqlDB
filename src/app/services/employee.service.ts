@@ -82,4 +82,12 @@ export class EmployeeService {
     updateReport(report){
         return this._http.post(report,'updateReport')
     }
+
+    updateEmp(user){
+        return this._http.post(user,'updateEmp')
+    }
+
+    changeEmpStatus(user: Employee){
+        return this._http.post(user,'changeEmpStatus')
+    }
 }
