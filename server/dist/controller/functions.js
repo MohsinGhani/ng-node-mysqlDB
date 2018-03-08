@@ -182,7 +182,7 @@ class Functions {
     }
     static updateEmp(req, res) {
         let emp = req.body;
-        console.log('report', emp.id);
+        console.log('emp', emp.id);
         connection.query(`UPDATE Employees SET 
         name='${emp.name}',
         contact='${emp.contact}',
